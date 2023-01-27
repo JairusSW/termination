@@ -1,0 +1,28 @@
+{
+    "name": "termination",
+    "version": "0.1.0",
+    "description": "In-terminal game engine",
+    "types": "src/index.ts",
+    "author": "Jairus Tanaka",
+    "contributors": [],
+    "license": "MIT",
+    "scripts": {},
+    "devDependencies": {
+        "@types/node": "^18.11.18",
+        "typescript": "^4.9.4"
+    },
+    "dependencies": {
+        "chalk": "^5.2.0",
+        "stockfish.js": "^10.0.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JairusSW/as-termination.git"
+    },
+    "keywords": [],
+    "bugs": {
+        "url": "https://github.com/JairusSW/as-termination/issues"
+    },
+    "homepage": "https://github.com/JairusSW/as-termination#readme",
+    "type": "module"
+}
