@@ -1,44 +1,37 @@
 import chalk from "chalk";
 
-class Color {
+export class Color {
     constructor(public r = 0, public g = 0, public b = 0) { }
 }
 
-const black = new Color(63, 68, 81);
-const white = new Color(215, 218, 224);
-class Termination {
+class GameOptions {
+    height: number = 0;
+    width: number = 0;
+    data: Block[] = [];
+}
+
+export class TermGame {
     public frame = new Frame();
-    constructor() {
-        this.frame.height = 8;
-        this.frame.width = 8;
-        this.frame.data = [
-            new Block("♜", black, white),
-            new Block("♞", white, black),
-            new Block("♗", black, white),
-            new Block("♕", white, black),
-            new Block("♔", black, white),
-            new Block("♗", white, black),
-            new Block("♞", black, white),
-            new Block("♜", white, black),
-        ]
+    constructor(options: GameOptions) {
+        this.frame.height = options.height;
+        this.frame.width = options.width;
+        this.frame.data = options.data;
     }
     render(): void {
         let result = "";
-        //for (let h = 0; h < this.frame.height; h++) {
-            for (let w = 0; w < this.frame.width; w++) {
-                result += this.frame.data[w]!.data;
+        for (let pos = 0; pos < this.frame.height * this.frame.width; pos++) {
+            if ((pos % this.frame.width) == 0) {
+                result += "\n"
             }
-        //}
+            result += this.frame.data[pos]?.data;
+        }
+        console.clear();
         process.stdout.write(result + "\n");
-    }
-    clear(): void {
-        process.stdout.cursorTo(0);
-        process.stdout.cursorTo(0);
     }
 }
 
 
-class Block {
+export class Block {
     public data!: string;
     constructor(public text: string, public color: Color, public background: Color) {
         this.data = this.update();
@@ -60,21 +53,15 @@ class Block {
     }
 }
 
-class Frame {
+export class Frame {
     public height = 0;
     public width = 0;
     public data: Block[] = [];
 }
 
-class Background {
+export class Background {
 }
-
-const game = new Termination();
-game.render();
-game.frame.data[0]?.editText("♕");
-game.clear();
-game.render();
-class Pixel {
+export class Pixel {
     public text!: "";
     public textColor!: Color;
     public background!: Color;
